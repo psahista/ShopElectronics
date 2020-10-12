@@ -20,10 +20,10 @@ class MyView3 extends PolymerElement {
   ready() {
     super.ready();
     this.camera = [
-      {id: 1, name: 'Camera', price: '43,000.00', description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam1.jpg'},
-      {id: 2, name: 'Camera', price: '38,000.00', description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam2.jpg'},
-      {id: 3, name: 'Camera', price: '50,000.00', description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam3.jpg'},
-      {id: 4, name: 'Camera', price: '28,000.00', description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam4.jpg'},
+      {id: 9, name: 'Camera', price: 43000.00, description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam1.jpg', left: 'Only 1 left!!'},
+      {id: 10, name: 'Camera', price: 38000.00, description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam2.jpg', left: 'Only 2 left!!'},
+      {id: 11, name: 'Camera', price: 50000.00, description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam3.jpg', left: 'Only 5 left!!'},
+      {id: 12, name: 'Camera', price: 28000.00, description: 'Canon EOS 1500D 24.1 Digital SLR Camera (Black) with EF S18-55 is II Lens, 16GB Card and Carry Case', url: '../images/cam4.jpg', left: 'Only 3 left!!'},
   ];
   }
   static get template() {
@@ -46,18 +46,19 @@ class MyView3 extends PolymerElement {
       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <app-location route="{{route}}"></app-location>
       <div style="padding: 20px;">
     <div class="row">
     <template is="dom-repeat" items="{{camera}}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-sx-12">
             <div class="card" style="margin-top: 5%;">
-                <img class="card-img-top img-size" src="{{item.url}}" alt="Card image cap">
+                <img class="card-img-top img-size" src="{{item.url}}" style="cursor: pointer" on-click="description" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title item-name">{{item.name}}</h5>
                   <p style="margin:0px; color: #B12704; font-weight: bold;">{{item.price}}/-</p>
                   <p class="card-text card-desc" title="{{item.description}}">
                   {{item.description}}</p>
-                  <a href="#" class="btn btn-primary">Description</a>
+                  <a href="#" class="btn btn-primary">Add</a>
                 </div>
             </div>
             </div>
@@ -66,6 +67,11 @@ class MyView3 extends PolymerElement {
   </div>
     `;
   }
+  description(event){
+    console.log(event.model.item.id);
+    localStorage.setItem("details", JSON.stringify(event.model.item));
+    this.set('route.path','details');
+}
 }
 
 window.customElements.define('my-view3', MyView3);

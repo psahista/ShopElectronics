@@ -21,10 +21,10 @@ class MyView6 extends PolymerElement {
   ready() {
     super.ready();
     this.laptop = [
-      {id: 1, name: 'Laptop', price: '49,000.00', description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg'},
-      {id: 2, name: 'Laptop', price: '59,000.00', description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg'},
-      {id: 3, name: 'Laptop', price: '60,000.00', description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg'},
-      {id: 4, name: 'Laptop', price: '45,000.00', description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg'},
+      {id: 21, name: 'Laptop', price: 49000.00, description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg', left: 'Only 2 left!!'},
+      {id: 22, name: 'Laptop', price: 59000.00, description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg', left: 'Only 1 left!!'},
+      {id: 23, name: 'Laptop', price: 60000.00, description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg', left: 'Only 4 left!!'},
+      {id: 24, name: 'Laptop', price: 45000.00, description: 'Lenovo V14 Intel Core i3 10th Gen 14-inch HD Thin and Light Laptop (4GB RAM/ 1TB HDD/ DOS/ Grey/ 1.6 kg), 82C4016RIH', url: '../images/laptops.jpg', left: 'Only 3 left!!'},
   ];
   }
   static get template() {
@@ -47,18 +47,19 @@ class MyView6 extends PolymerElement {
       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <app-location route="{{route}}"></app-location>
       <div style="padding: 20px;">
     <div class="row">
     <template is="dom-repeat" items="{{laptop}}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-sx-12">
             <div class="card" style="margin-top: 5%;">
-                <img class="card-img-top img-size" src="{{item.url}}" alt="Card image cap">
+                <img class="card-img-top img-size" src="{{item.url}}" style="cursor: pointer" on-click="description" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title item-name">{{item.name}}</h5>
                   <p style="margin:0px; color: #B12704; font-weight: bold;">{{item.price}}/-</p>
                   <p class="card-text card-desc" title="{{item.description}}">
                   {{item.description}}</p>
-                  <a href="#" class="btn btn-primary">Description</a>
+                  <a href="#" class="btn btn-primary">Add</a>
                 </div>
             </div>
             </div>
@@ -66,6 +67,11 @@ class MyView6 extends PolymerElement {
       </div>
   </div>
     `;
+  }
+  description(event){
+    console.log(event.model.item.id);
+    localStorage.setItem("details", JSON.stringify(event.model.item));
+    this.set('route.path','details');
   }
 }
 

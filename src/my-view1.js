@@ -21,10 +21,10 @@ class MyView1 extends PolymerElement {
   ready() {
     super.ready();
     this.refrigerator = [
-      {id: 1, name: 'Refrigerator', price: 12000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg'},
-      {id: 2, name: 'Refrigerator', price: 10000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg'},
-      {id: 3, name: 'Refrigerator', price: 15000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg'},
-      {id: 4, name: 'Refrigerator', price: 18000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg'},
+      {id: 1, name: 'Refrigerator', price: 12000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg', left: 'Only 2 left!!'},
+      {id: 2, name: 'Refrigerator', price: 10000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg', left: 'Only 5 left!!'},
+      {id: 3, name: 'Refrigerator', price: 15000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg', left: 'Only 7 left!!'},
+      {id: 4, name: 'Refrigerator', price: 18000.00 , description: 'Hisense 93 L 1 Star Direct-Cool Single Door Minibar Refrigerator with reversible door', url: '../images/rr1.jpg', left: 'Only 1 left!!'},
   ]; 
   }
   static get template() {
@@ -83,30 +83,14 @@ class MyView1 extends PolymerElement {
       },
     }
 } 
-  // description(){
-  //   this.set('route.path', '/details');
-  // }
-  // static get properties() {
-  //   return {
-  //     page: {
-  //       type: String,
-  //       reflectToAttribute: true,
-  //       observer: 'changedURL'
-  //     },
-  //   };
-  //   }
-    // changedURL(){
-    //   let params = new URLSearchParams(url.search.slice(1));
-    //   console.log('hii');
-    //   params.delete(); 
-    // }
+  
   description(event){
     console.log(event.model.item.id);
     localStorage.setItem("details", JSON.stringify(event.model.item));
     this.set('route.path','details');
-  //  this.set('queryParams', {id:event.model.item.id});
 }
 add(event){
+  debugger
   console.log(event.model.item);
   console.log(this.itemArray);
   this.count = this.count+1;

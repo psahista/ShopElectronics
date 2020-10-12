@@ -25,8 +25,9 @@ class MyLogin extends PolymerElement {
 
   ready() {
     super.ready();
-    localStorage.setItem("userName", 'admin');
-    localStorage.setItem("password", 'admin');
+    localStorage.setItem("name", 'Joe')
+    localStorage.setItem("userName", 'Joe');
+    localStorage.setItem("password", 'Password');
     
   }
   
@@ -79,8 +80,9 @@ class MyLogin extends PolymerElement {
           .custom-btn {
               padding: 10px 65px !important;
               border-radius: 0px !important;
-              margin-left: 18%;
-              margin-bottom: 2%;
+              margin-left: 25%;
+              margin-bottom: 5%;
+              margin-top: 10%;
           }
           .row {
             margin-right: 0px !important; 
@@ -90,6 +92,11 @@ class MyLogin extends PolymerElement {
           margin-left: 15%;
           color: #dd2c00;
         }
+        @media only screen and (max-width: 600px) {
+          .bg {
+            width: inherit;
+          }
+       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <app-location route="{{route}}"></app-location>
@@ -112,7 +119,7 @@ class MyLogin extends PolymerElement {
                 
                   <form>
                   <paper-input label="UserName" value="{{valueName}}" required auto-validate error-message="UserName is required!"></paper-input>
-                  <paper-input label="Password" value="{{valuePassword}}" required auto-validate error-message="Password is required!"></paper-input>
+                  <paper-input label="Password" type="password" value="{{valuePassword}}" required auto-validate error-message="Password is required!"></paper-input>
                 
                   <button class="btn btn-primary custom-btn" on-click="handleClick">LOGIN</button>
                   </form>

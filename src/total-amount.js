@@ -29,7 +29,7 @@ class TotalAmount extends PolymerElement {
       <div style="padding: 20px;">
       <h3>Total Amount: {{total}}<h3> 
       <template is="dom-repeat" items="{{data}}"> 
-      <div class="card">
+      <div class="card" style="margin-bottom: 3%;">
       <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <img src="{{item.url}}" style="width: 80%">
@@ -57,7 +57,7 @@ class TotalAmount extends PolymerElement {
       total:{
         type:Number,
         notify:true,
-        value:0,
+        value:localStorage.getItem("totalAmount"),
         observer:""
       },
     }
@@ -66,6 +66,7 @@ getTotalAmount(){
     debugger
     this.total = 0;
     this.total = this.data.reduce((sum,item) => sum+item.price,0);
+    localStorage.setItem("totalAmount", this.total);
     // return this.total 
 }
 }

@@ -84,9 +84,10 @@ class MyApp extends PolymerElement {
           width: 27px;
           text-align: center;
         }
+       
       </style>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-      <app-location route="{{route}}" query-params="{{queryParams}}  data="{{routeData}}" >
+=      <app-location route="{{route}}"  data="{{routeData}}" >
       </app-location>
 
       <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
@@ -116,20 +117,30 @@ class MyApp extends PolymerElement {
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
               <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
-              <div main-title="">My App </div>
+              <div main-title="">
+              Hello {{name}}, Welcome Back!!! 
+              </div>
             </app-toolbar>
             <app-toolbar style="float: right">
-            <sapn on-click="redirectCart"><span class="total-item">{{count}}</span>
+            <span style="cursor: pointer; margin-right: 25px;" on-click="redirectCart">
+            <span class="total-item">{{count}}</span>
             <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-cart3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-          </svg></span>
+              </svg>
+              </span>
+          <span style="cursor: pointer" on-click="logOut">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+                </span>
   </app-toolbar>
           </app-header>
           </template>
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
             <my-view1 name="view1" count={{count}}></my-view1>
-            <my-view2 name="view2"></my-view2>
+            <my-view2 name="view2" count={{count}}></my-view2>
             <my-view3 name="view3"></my-view3>
             <my-view4 name="view4"></my-view4>
             <my-view5 name="view5"></my-view5>
@@ -167,10 +178,16 @@ class MyApp extends PolymerElement {
       },
       tempTotal: {
         type: Array,
-        value: []
+        value: JSON.parse(localStorage.getItem("itemArr")),
+      },
+      name: {
+        type: String,
+        value: ''
       }
     };
   }
+  
+
 
   static get observers() {
     return [
@@ -180,6 +197,7 @@ class MyApp extends PolymerElement {
   redirectCart(){
     this.set('route.path', '/amount');
   }
+  
   _routePageChanged(page) {
      // Show the corresponding page according to the route.
      //
@@ -189,7 +207,7 @@ class MyApp extends PolymerElement {
       this.page = 'login';
     } else if (['view1', 'view2', 'view3','view4', 'view5', 'view6','login','details','amount'].indexOf(page) !== -1) {
       this.page = page;
-      
+      this.name = localStorage.getItem("name");
     }
     else {
       this.page = 'view404';
@@ -219,7 +237,11 @@ class MyApp extends PolymerElement {
     }
 
   }
-
+  logOut() {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("password");
+    this.set('route.path','/login');
+  }
   _pageChanged(page) {
    
     // Import the page component on demand.

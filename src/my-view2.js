@@ -20,10 +20,10 @@ class MyView2 extends PolymerElement {
   ready() {
     super.ready();
     this.washingmachine = [
-      {id: 1, name: 'Washing Machine', price: '8,000.00', description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm2.jpg'},
-      {id: 2, name: 'Washing Machine', price: '9,000.00', description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm4.jpg'},
-      {id: 3, name: 'Washing Machine', price: '10,000.00', description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm2.jpg'},
-      {id: 4, name: 'Washing Machine', price: '15,000.00', description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm4.jpg'},
+      {id: 5, name: 'Washing Machine', price: 8000.00, description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm2.jpg', left: 'Only 2 left!!'},
+      {id: 6, name: 'Washing Machine', price: 9000.00, description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm4.jpg', left: 'Only 1 left!!'},
+      {id: 7, name: 'Washing Machine', price: 10000.00, description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm2.jpg', left: 'Only 4 left!!'},
+      {id: 8, name: 'Washing Machine', price: 15000.00, description: 'Panasonic 6 Kg 5 Star Fully-Automatic Top Loading Washing Machine', url: '../images/wm4.jpg', left: 'Only 3 left!!'},
   ];
   }
   static get template() {
@@ -46,18 +46,19 @@ class MyView2 extends PolymerElement {
       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <app-location route="{{route}}"></app-location>
       <div style="padding: 20px;">
     <div class="row">
     <template is="dom-repeat" items="{{washingmachine}}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-sx-12">
             <div class="card" style="margin-top: 5%;">
-                <img class="card-img-top img-size" src="{{item.url}}" alt="Card image cap">
+                <img class="card-img-top img-size" style="cursor: pointer" src="{{item.url}}" on-click="description" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title item-name">{{item.name}}</h5>
                   <p style="margin:0px; color: #B12704; font-weight: bold;">{{item.price}}/-</p>
                   <p class="card-text card-desc" title="{{item.description}}">
                   {{item.description}}</p>
-                  <a href="#" class="btn btn-primary">Description</a>
+                  <a class="btn btn-primary" style="color: #fff">Add</a>
                 </div>
             </div>
             </div>
@@ -66,5 +67,34 @@ class MyView2 extends PolymerElement {
   </div>
     `;
   }
+  static get properties() {
+    return {
+      count:{
+        type:Number,
+        notify:true,
+        value:0,
+        observer:""
+      },
+      itemArray: {
+        type : Array,
+        notify:true,
+        value: localStorage.getItem("itemArr")?JSON.parse(localStorage.getItem("itemArr")):[],
+      },
+    }
+} 
+  description(event){
+    console.log(event.model.item.id);
+    localStorage.setItem("details", JSON.stringify(event.model.item));
+    this.set('route.path','details');
+}
+add(event){
+  debugger
+  console.log(event.model.item);
+  console.log(this.itemArray);
+  this.count = this.count+1;
+  localStorage.setItem("count", JSON.stringify(this.count));
+  this.itemArray.push(event.model.item);
+  localStorage.setItem('itemArr',  JSON.stringify(this.itemArray));
+}
 }
 window.customElements.define('my-view2', MyView2);

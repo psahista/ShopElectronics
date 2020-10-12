@@ -22,6 +22,15 @@ class MyDetails extends PolymerElement {
           display: block;
           padding: 10px 20px;
         }
+        .leftItem {
+          color: green;
+          font-weight: 600;
+          font-size: 22px;
+        }
+        .desc-headings {
+          font-weight: 600;
+          font-size: 20px;
+        }
       </style>
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -34,9 +43,10 @@ class MyDetails extends PolymerElement {
       <img src="{{data.url}}" style="width: 80%">
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <div style="margin-top: 10%;"><span>Name: {{data.name}}</span></div>
-      <div><span>Description:{{data.description}} </span></div>
-      <div><span>Price: {{data.price}}</span></div>
+      <div style="margin-top: 10%;"><span class="desc-headings">Name: </span><span>{{data.name}}</span></div>
+      <div><span class="desc-headings">Description: </span><span>{{data.description}} </span></div>
+      <div><span class="desc-headings">Price: </span><span> {{data.price}} /-</span></div>
+      <div class="leftItem">{{data.left}}</div>
       </div>
       </div>
     </div>

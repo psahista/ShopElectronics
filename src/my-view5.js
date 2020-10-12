@@ -21,10 +21,10 @@ class MyView5 extends PolymerElement {
   ready() {
     super.ready();
     this.television = [
-      {id: 1, name: 'Television', price: '29,000.00', description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv1.jpg'},
-      {id: 2, name: 'Television', price: '32,000.00', description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv2.jpg'},
-      {id: 3, name: 'Television', price: '52,000.00', description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv3.jpg'},
-      {id: 4, name: 'Television', price: '42,000.00', description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv4.jpg'},
+      {id: 17, name: 'Television', price: 29000.00, description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv1.jpg', left: 'Only 2 left!!'},
+      {id: 18, name: 'Television', price: 32000.00, description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv2.jpg', left: 'Only 1 left!!'},
+      {id: 19, name: 'Television', price: 52000.00, description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv3.jpg', left: 'Only 4 left!!'},
+      {id: 20, name: 'Television', price: 42000.00, description: 'TCL 100 cm (40 inches) Full HD Smart Certified Android LED TV 40S6500FS (Black) (2020 Model)', url: '../images/tv4.jpg', left: 'Only 2 left!!'},
   ];
   }
   static get template() {
@@ -47,18 +47,19 @@ class MyView5 extends PolymerElement {
       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <app-location route="{{route}}"></app-location>
       <div style="padding: 20px;">
     <div class="row">
     <template is="dom-repeat" items="{{television}}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-sx-12">
             <div class="card" style="margin-top: 5%;">
-                <img class="card-img-top img-size" src="{{item.url}}" alt="Card image cap">
+                <img class="card-img-top img-size" style="cursor: pointer" on-click="description" src="{{item.url}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title item-name">{{item.name}}</h5>
                   <p style="margin:0px; color: #B12704; font-weight: bold;">{{item.price}}/-</p>
                   <p class="card-text card-desc" title="{{item.description}}">
                   {{item.description}}</p>
-                  <a href="#" class="btn btn-primary">Description</a>
+                  <a href="#" class="btn btn-primary">Add</a>
                 </div>
             </div>
             </div>
@@ -66,6 +67,11 @@ class MyView5 extends PolymerElement {
       </div>
   </div>
     `;
+  }
+  description(event){
+    console.log(event.model.item.id);
+    localStorage.setItem("details", JSON.stringify(event.model.item));
+    this.set('route.path','details');
   }
 }
 
