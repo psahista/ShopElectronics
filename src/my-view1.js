@@ -74,7 +74,6 @@ class MyView1 extends PolymerElement {
         type:Number,
         notify:true,
         value:0,
-        observer:""
       },
       itemArray: {
         type : Array,
@@ -83,12 +82,13 @@ class MyView1 extends PolymerElement {
       },
     }
 } 
-  
+  // get description values by passing the particular ID of the item
   description(event){
     console.log(event.model.item.id);
     localStorage.setItem("details", JSON.stringify(event.model.item));
     this.set('route.path','details');
 }
+// add item to the cart
 add(event){
   debugger
   console.log(event.model.item);

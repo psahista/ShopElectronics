@@ -73,7 +73,6 @@ class MyView2 extends PolymerElement {
         type:Number,
         notify:true,
         value:0,
-        observer:""
       },
       itemArray: {
         type : Array,

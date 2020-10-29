@@ -144,6 +144,7 @@ class MyLogin extends PolymerElement {
       }
     }
   }
+  // user login event
   handleClick(){
     if(this.valueName == localStorage.getItem("userName") && this.valuePassword == localStorage.getItem("password")){
     this.set('route.path', '/view1');

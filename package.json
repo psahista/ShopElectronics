@@ -17,6 +17,7 @@
     "@polymer/app-route": "^3.0.2",
     "@polymer/iron-flex-layout": "^3.0.0",
     "@polymer/iron-form": "^3.0.1",
+    "@polymer/iron-icons": "^3.0.1",
     "@polymer/iron-iconset-svg": "^3.0.0",
     "@polymer/iron-media-query": "^3.0.0",
     "@polymer/iron-pages": "^3.0.0",
@@ -24,6 +25,7 @@
     "@polymer/paper-icon-button": "^3.0.0",
     "@polymer/paper-input": "^3.2.1",
     "@polymer/paper-toast": "^3.0.1",
+    "@polymer/paper-toggle-button": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
     "@webcomponents/webcomponentsjs": "^2.0.0"
   },
@@ -34,5 +36,7 @@
   "engines": {
     "node": ">=8.0"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

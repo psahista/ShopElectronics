@@ -106,6 +106,7 @@ class MyApp extends PolymerElement {
             <a name="view4" href="[[rootPath]]view4">Head Phone</a>
             <a name="view5" href="[[rootPath]]view5">Television</a>
             <a name="view6" href="[[rootPath]]view6">Laptop</a>
+            <a name="payment" href="[[rootPath]]payment">Payment</a>
           </iron-selector>
         </app-drawer>
         </template>
@@ -140,12 +141,14 @@ class MyApp extends PolymerElement {
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
             <my-view1 name="view1" count={{count}}></my-view1>
-            <my-view2 name="view2" count={{count}}></my-view2>
+            <my-view2 name="view2"></my-view2>
             <my-view3 name="view3"></my-view3>
             <my-view4 name="view4"></my-view4>
             <my-view5 name="view5"></my-view5>
             <my-view6 name="view6"></my-view6>
             <my-login name="login"></my-login>
+            <my-payment name="payment"></my-payment>
+            <payment-submit name="submit"></payment-submit>
             <my-details name="details" data={{detailsVar}}></my-details>
             <total-amount name="amount" data = {{tempTotal}}></total-amount>
             <my-view404 name="view404"></my-view404>
@@ -202,16 +205,17 @@ class MyApp extends PolymerElement {
      // Show the corresponding page according to the route.
      //
      // If no page was found in the route data, page will be an empty string.
-     // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
+     // Show 'login' in that case. And if the page doesn't exist, show 'view404'.
     if (!page) {
       this.page = 'login';
-    } else if (['view1', 'view2', 'view3','view4', 'view5', 'view6','login','details','amount'].indexOf(page) !== -1) {
+    } else if (['view1', 'view2', 'view3','view4', 'view5', 'view6','login','details','amount','payment','submit'].indexOf(page) !== -1) {
       this.page = page;
       this.name = localStorage.getItem("name");
     }
     else {
       this.page = 'view404';
     }
+    // making sideNav and NavBar false for login
     if(this.page == 'login'){
       this.showSideNav = false;
       this.showSideNavBar = false;
@@ -220,9 +224,11 @@ class MyApp extends PolymerElement {
       this.showSideNav = true;
       this.showSideNavBar = true;
     }
+    // getting details
     if(this.page == 'details'){
       this.detailsVar = JSON.parse(localStorage.getItem("details"));
     }
+    // getting total selected array
     if(this.page == 'amount'){
     this.tempTotal = localStorage.getItem("itemArr")?JSON.parse(localStorage.getItem("itemArr")):[];
     }
@@ -245,8 +251,6 @@ class MyApp extends PolymerElement {
   _pageChanged(page) {
    
     // Import the page component on demand.
-    //
-    // Note: `polymer build` doesn't like string concatenation in the import
     // statement, so break it up.
     switch (page) {
       case 'view1':
@@ -268,15 +272,21 @@ class MyApp extends PolymerElement {
         import('./my-view6.js');
         break;
         case 'login':
-          import('./my-login.js');
-          break;
-          case 'details':
-          import('./my-details.js');
-          break;
-          case 'amount':
-            import('./total-amount.js');
-            break;
-      case 'view404':
+        import('./my-login.js');
+        break;
+        case 'details':
+        import('./my-details.js');
+        break;
+        case 'amount':
+        import('./total-amount.js');
+        break;
+        case 'payment':
+        import('./my-payment.js');
+        break;
+        case 'submit':
+        import('./payment-submit.js');
+        break;
+        case 'view404':
         import('./my-view404.js');
         break;
     }

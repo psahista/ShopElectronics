@@ -58,16 +58,14 @@ class TotalAmount extends PolymerElement {
         type:Number,
         notify:true,
         value:localStorage.getItem("totalAmount"),
-        observer:""
       },
     }
 } 
+// get total amount of selected product
 getTotalAmount(){
-    debugger
     this.total = 0;
     this.total = this.data.reduce((sum,item) => sum+item.price,0);
     localStorage.setItem("totalAmount", this.total);
-    // return this.total 
 }
 }
 

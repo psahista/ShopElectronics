@@ -60,7 +60,6 @@ class MyDetails extends PolymerElement {
         type:[],
         notify:true,
         value:"",
-        observer:""
       },
     }
 } 
