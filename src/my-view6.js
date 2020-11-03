@@ -47,24 +47,32 @@ class MyView6 extends PolymerElement {
       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <link rel = "stylesheet" 
+      href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+   <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
+   </script>
+
       <app-location route="{{route}}"></app-location>
       <div style="padding: 20px;">
-    <div class="row">
-    <template is="dom-repeat" items="{{laptop}}">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-sx-12">
-            <div class="card" style="margin-top: 5%;">
-                <img class="card-img-top img-size" src="{{item.url}}" style="cursor: pointer" on-click="description" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title item-name">{{item.name}}</h5>
-                  <p style="margin:0px; color: #B12704; font-weight: bold;">{{item.price}}/-</p>
-                  <p class="card-text card-desc" title="{{item.description}}">
-                  {{item.description}}</p>
-                  <a href="#" class="btn btn-primary">Add</a>
-                </div>
+      <div class = "mdl-grid">
+      <template is="dom-repeat" items="{{laptop}}">
+               <div class = "mdl-cell mdl-cell--3-col">
+               <div class="card" style="margin-top: 5%;">
+               <img class="card-img-top img-size" src="{{item.url}}" style="cursor: pointer" on-click="description" alt="Card image cap">
+               <div class="card-body">
+                 <h5 class="card-title item-name">{{item.name}}</h5>
+                 <p style="margin:0px; color: #B12704; font-weight: bold;">{{item.price}}/-</p>
+                 <p class="card-text card-desc" title="{{item.description}}">
+                 {{item.description}}</p>
+                 <a href="#" class="btn btn-primary">Add</a>
+               </div>
+           </div>
+               </div>
+               
+               </template>
             </div>
-            </div>
-            </template>
-      </div>
+    
   </div>
     `;
   }

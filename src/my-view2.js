@@ -46,11 +46,15 @@ class MyView2 extends PolymerElement {
       }
       </style>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel = "stylesheet" 
+      href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+   <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
+   </script>
       <app-location route="{{route}}"></app-location>
       <div style="padding: 20px;">
-    <div class="row">
+    <div class="mdl-grid">
     <template is="dom-repeat" items="{{washingmachine}}">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-sx-12">
+        <div class="mdl-cell mdl-cell--3-col">
             <div class="card" style="margin-top: 5%;">
                 <img class="card-img-top img-size" style="cursor: pointer" src="{{item.url}}" on-click="description" alt="Card image cap">
                 <div class="card-body">
